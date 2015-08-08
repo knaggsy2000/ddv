@@ -1,0 +1,38 @@
+Danny's Digital Voice
+=====================
+Link: http://code.google.com/p/ddv/
+
+For license and copyright, please see the LICENSE file.
+
+
+DDV's Codecs
+============
+DDV currently can use multiple codecs which can be chosen when initialising: -
+
+=======================================
+|  Name  | Value | Licensed Required? |
+=========+=======+=====================
+| Speex  |   0   |         No         |
+| Codec2 |   1   |         No         |
+| Ogg    |   2   |         No         |
+=======================================
+
+The value is the numeric value used internally by DDV and it's XML configuration files.
+
+
+Notes
+=====
+
+Speex
+^^^^^
+Ensure you have followed the installation notes from the README file.
+
+Codec2
+^^^^^^
+Ensure you have followed the installation notes from the README file.
+
+Ogg
+^^^
+This was added for experimenting only as to test the speed of the code internally.  Not to be used on-air as it require lots more bandwidth.
+
+<EOF>

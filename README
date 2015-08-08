@@ -1,0 +1,176 @@
+Danny's Digital Voice - Release v0.2.0 on 27/08/2012
+====================================================
+Link: http://code.google.com/p/ddv/
+
+For license and copyright, please see the LICENSE file.
+
+
+Notes
+=====
+v0.2.1 - XXth July 2013
+^^^^^^^^^^^^^^^^^^^^^^^
+1. Tested with Codec2 revision 1310 - 3200/2400/1400/1200 baud rates now available.
+
+v0.2.0 - 27th August 2012
+^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with DDP v0.6.1.
+2. Removed the audio buffer - now performs perfectly without it, various code improvements in DDP and DDV have allowed me to do this.
+3. log() function now brought inline with latest version of DDP.
+4. DDV is now aimed for Python v2.7 - please update your packages.
+5. You can now specify the protocol specification ID in the example XML files.  DDV should work with both ID 1 (8-bit - preferred) and ID 3 (SMS hex).
+6. Latest version of Codec2 is now required as the 1500 bitrate is no longer available, please update.  Default bitrate is now 1200 (Codec2 now offers 2400/1400/1200 bits/s).  I tested with revision 604.
+7. DDV's temp directory is now no longer needed as the all encoders and decoders now use piping to move the data around - no more local files!
+
+v0.1.6 - 12th April 2012
+^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with latest development version of Codec2 which gives us 1500 bit/s - please note that DDV will now only work with the development version of Codec2.  The "c2dec" and "c2enc" applications are now available, I checked out revision 365 (latest at this point in time) and appears to be working fine.
+2. DDV tested under Python v2.7, no problems.  Documentation updated.
+
+v0.1.5 - 11th February 2012
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with DDP v0.6.0.
+
+v0.1.4 - 13th October 2011
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with DDP v0.5.2.
+2. Examples have been updated.
+
+v0.1.3 - 27th August 2011
+^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Colourised the logging so it's now the same as DDP.
+2. Now works with DDP v0.5.1 - so we've now got crypto available, examples changed to reflect this.
+
+v0.1.2 - 29th April 2011
+^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with DDP v0.4.2, uses the improved receiveDataFromAny() routine built in DDP.
+
+v0.1.1 - 25th April 2011
+^^^^^^^^^^^^^^^^^^^^^^^^
+1. Tweaked code to work with DDP v0.4.1.
+
+v0.1.0 - 2nd April 2011
+^^^^^^^^^^^^^^^^^^^^^^^
+1. Initial release, bit rough on the edges.  Basics working.
+
+v0.0.0 - 9th November 2010
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Development started
+
+
+Usage
+=====
+On the command line: -
+
+% python dvrx.py
+% python dvtx.py
+% python dvtxfile.py txaudio.raw
+
+
+Current Features
+================
+0. *** You must have DDP >= v0.6.1 installed (don't forget to create a symbolic link to ddp.py (and it's specification files) so DDV can find it) on your PC as DDV just extends the base class.  DDV can ONLY use a RS-232 modem connected to your rig due to the high baudrates needed.  I recommend a GMSK modem based on the CMX589 IC, but can design any type of modem yourself. ***
+1. Contains example code for: -
+	> DV receiving
+	> DV transmitting (live and via a saved file)
+2. You can include the ddv.py to get support of the protocol in your project - look at the example code for guidance.
+
+
+Future Features
+===============
+1. TO DO
+
+
+Installation
+============
+FreeBSD
+^^^^^^^
+Here are the packages I've currently got installed for DDP to work: -
+
+================================================================================================================================
+Name			|	Download From	|	Directory
+================+===================+===========================================================================================
+py27-numeric	|	Ports			|	/usr/ports/math/py-numeric/
+py27-serial		|	Ports			|	/usr/ports/comms/py-serial/
+python27		|	Ports			|	/usr/ports/lang/python/
+================================================================================================================================
+
+You can install them in any order, you might want to make sure the your ports collection is up-to-date.  Python 2.7 is normally installed by default so don't worry about that one.
+
+Linux
+^^^^^
+Untested - But you should find the above packages for your distro.  I don't expect any problems running DDV on Linux.
+
+MacOS
+^^^^^
+Untested.
+
+
+
+Codec2
+======
+Here's how to compile Codec2, I'll assume your machine has all the required packages to configure and build programs: -
+
+FreeBSD
+^^^^^^^
+% mkdir svnsrc
+% cd svnsrc
+% svn co https://freetel.svn.sourceforge.net/svnroot/freetel/codec2-dev
+% cd codec2-dev
+% ./configure
+% gmake
+
+Linux
+^^^^^
+% mkdir svnsrc
+% cd svnsrc
+% svn co https://freetel.svn.sourceforge.net/svnroot/freetel/codec2-dev
+% cd codec2-dev
+% ./configure
+% make
+
+
+Finally, make symbolic links of "c2dec", "c2enc", "fdmdv_demod", and "fdmdv_mod" to the DDV directory so DDV can use them (it won't search the system path for it): -
+
+% ln -s ./src/c2dec /path/to/ddv/dir/c2dec
+% ln -s ./src/c2enc /path/to/ddv/dir/c2enc
+% ln -s ./src/fdmdv_demod /path/to/ddv/dir/fdmdv_demod
+% ln -s ./src/fdmdv_mod /path/to/ddv/dir/fdmdv_mod
+
+
+Speex
+=====
+
+FreeBSD
+^^^^^^^
+Install from the ports in "/usr/ports/audio/speex".
+
+Linux
+^^^^^
+Install the program using your default package manager.
+
+
+FAQ
+===
+Q. What are the dependencies for this program?
+A. Python v2.7 or greater.  Modules used are the same as DDP.
+
+Q. What operating systems does it support?
+A. I develop and test DDV with FreeBSD 9.0, it should work in other POSIX compliant operating systems as well other distros of Linux.
+
+Q. Can I create (port) of DDV?
+A. By all means! Be sure to read the LICENSE as your port will inherit the license.
+
+Q. I've found a bug! What do I do?
+A. Let me know by raising it as an issue so I can fix it in the next version.
+
+Q. I would like a feature that's not in DDV...
+A. I'm currently not accepting feature requests as DDV is a protocol not a "final" product.
+
+
+Legal
+=====
+The end-user (ie. YOU) is responsible for ensuring the codecs used with DDV is licensed (by default DDV uses open-source codecs which don't require any kind of license).
+
+The author is in no way affiliated or in partnership with Google, Fldigi, Icom, Yaesu, Microsoft, CML Microcircuits, or anyone else.
+
+<EOF>
